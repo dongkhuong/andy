@@ -20,7 +20,7 @@
             echo $qAddRestaurant;
             $rsAddRestaurant= $mysqli->query($qAddRestaurant);
             if($rsAddRestaurant){
-                header('Location:/andy/admin/restaurant/?msgsuccess=Add Successful!');
+                header('Location:/andy/admin/restaurant/?msgsuccess=Thêm nhà hàng thành công!');
                 die();
             }else{
                 echo '<p>Có lỗi trong quá trình xử lý!</p>';
@@ -33,21 +33,20 @@
           <div class="col-md-12 ftco-animate">
             <form method="post" class="contact-form" enctype='multipart/form-data'>
               <div class="form-group">
-                <input type="text" class="form-control" name="name" placeholder="Restaurant Name">
+                <input type="text" class="form-control" name="name" placeholder="Restaurant Name" required>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" name="address" placeholder="Restaurant Address">
+                <input type="text" class="form-control" name="address" placeholder="Restaurant Address" required>
               </div>
               <div class="form-group">
-                <input type="file" class="form-control" name="image">
+                <input type="file" class="form-control" name="image" required>
               </div>  
               <div class="form-group">
-                <textarea name="preview_text" id="" cols="30" rows="7" class="form-control" placeholder="Preview text"></textarea>
+                <textarea name="preview_text" id="" cols="30" rows="7" class="form-control" placeholder="Preview text" required></textarea>
               </div>
                <div class="form-group">
-                  <div class="form-group">
                   <label for="id_food">Food Name</label>
-                  <select name="id_food" class="form-control">
+                  <select name="id_food" class="form-control" required>
                     <?php 
                           $sql_food = "SELECT * FROM food";
                           $rs_food = $mysqli->query($sql_food);
@@ -57,11 +56,9 @@
                   <?php } ?>
                   </select>
                 </div>
-                </div>
               <div class="form-group">
-                  <div class="form-group">
                   <label for="id_cat">Cat Name</label>
-                  <select name="id_cat" class="form-control">
+                  <select name="id_cat" class="form-control" required>
                     <?php 
                           $sql_cat = "SELECT * FROM cat";
                           $rs_cat = $mysqli->query($sql_cat);
@@ -70,12 +67,11 @@
                     <option value="<?php echo $row_cat['id_cat']?>"><?php echo $row_cat['name_cat']?></option>
                   <?php } ?>
                   </select>
-                </div>
+                
               </div>
               <div class="form-group">
-                  <div class="form-group">
                   <label for="id_owner">Owner Restaurant Name</label>
-                  <select name="id_owner" class="form-control">
+                  <select name="id_owner" class="form-control" required>
                     <?php 
                           $sql_owner = "SELECT * FROM users WHERE id_role = 3";
                           $rs_owner = $mysqli->query($sql_owner);
@@ -83,8 +79,7 @@
                        ?>
                     <option value="<?php echo $row_owner['id_user']?>"><?php echo $row_owner['fullname']?></option>
                   <?php } ?>
-                  </select>
-                </div>
+                  </select>     
               </div>
              <div class="form-group">
                 <input type="submit" value="Add Restaurant" name="submit" class="btn btn-primary py-3 px-5">
