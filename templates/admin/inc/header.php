@@ -1,4 +1,11 @@
-<?php require_once $_SERVER['DOCUMENT_ROOT'].'/andy/utils/DBConnectionUtil.php'; ?>    
+<?php ob_start(); ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'].'/andy/utils/DBConnectionUtil.php'; ?>  
+<?php session_start(); 
+if(!isset($_SESSION['arUser'])){
+ header('location:/andy/auth');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -40,9 +47,11 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Restaurant</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-            <li class="nav-item active"><a href="#" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>        
+            <?php if(isset($_SESSION['arUser'])){?>
+            <li class="nav-item active"><a href="/andy/admin/user/profile.php" class="nav-link"><?php echo $_SESSION['arUser']['fullname']; ?></a></li>
+            <li class="nav-item"><a href="/andy/auth/logout.php" class="nav-link">Logout</a></li>
+            <?php } ?>
           </ul>
         </div>
       </div>

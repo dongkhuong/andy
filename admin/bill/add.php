@@ -31,12 +31,12 @@
 	    			<form action="#" class="appointment-form" method="POST">
 	    				<div class="d-md-flex">
 		    				<div class="form-group">
-                  <input type="text" name="id_customer" class="form-control" placeholder="NumberPhone">
+                  <input type="text" name="id_customer" class="form-control" placeholder="NumberPhone" required="">
 		    				</div>
 	    				</div>
 	    				<div class="d-me-flex">
 	    					<div class="form-group">
-		    					<input type="text" name="price" class="form-control" placeholder="Price">
+		    					<input type="text" name="price" class="form-control" placeholder="Price" required="">
 		    				</div>
 	    				</div>
 	            <div class="form-group">

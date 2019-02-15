@@ -40,7 +40,7 @@
       $arUser = $rslogin->fetch_assoc();
       if(count($arUser)>0){
         $_SESSION['arUser']= $arUser;
-        header('location:/andy/admin/index.php');
+        header('location:/andy/admin/restaurant/');
       }else{
         header('location:/andy/auth/?msg=Đăng nhập thất bại!');
       }

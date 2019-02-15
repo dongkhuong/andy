@@ -1,0 +1,10 @@
+<?php 
+session_start();
+if(!isset($_SESSION['arUser'])){
+ header('location:/andy/auth');
+}
+if(isset($_SESSION['arUser'])){
+	session_destroy();
+	header('location:/andy/auth/');
+}
+?>
