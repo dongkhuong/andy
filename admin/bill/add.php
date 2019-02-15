@@ -10,15 +10,12 @@
             $id_customer = $_POST['id_customer'];
             $price = $_POST['price'];
             $qAddBill = "INSERT INTO bill(id_user,price) VALUES ($id_customer,$price)";
-            echo $qAddBill;
-
-            # $pointCong = price / 1000;
-
-            # $qUpdateBill = "UPDATE users SET point = point + $pointCong where id_user = $id_customer";
-
-            $rsAddBill= $mysqli->query($qAddBill);
-            if($rsAddBill){
-                header('Location:/andy/admin/bill/?msgsuccess=Thêm hóa đơn thành công!');
+            $rsAddBill = $mysqli->query($qAddBill);
+            $pointCong = $price / 1000;
+            $qUpdateBill = "UPDATE users SET point = point + $pointCong where id_user = $id_customer";
+            $rsUpdateBill= $mysqli->query($qUpdateBill);
+            if($rsAddBill && $rsUpdateBill){
+                header('Location:/andy/admin/bill/?msgsuccess=Tích lũy điểm thành công!');
                 die();
             }else{
                 echo '<p>Có lỗi trong quá trình xử lý!</p>';

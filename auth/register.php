@@ -36,8 +36,9 @@
       $username = $_POST['username'];
       $password = $_POST['password'];
       $fullname = $_POST['fullname'];
+      $phone = $_POST['phone'];
       $role= $_POST['role'];
-      $query_register = "INSERT INTO users(username,password,fullname,id_role) VALUES('$username','$password','$fullname','$role');";
+      $query_register = "INSERT INTO users(username,password,fullname,phone,id_role) VALUES('$username','$password','$fullname',$phone,'$role');";
       $rs_register = $mysqli->query($query_register);
       if($rs_register){
         header('location:/andy/admin/welcome.php');
@@ -52,21 +53,23 @@
 					Register
 				</span>
 				<div class="wrap-input100 validate-input m-b-20" data-validate="Enter username">
-					<input class="input100" type="text" name="username" placeholder="username">
+					<input class="input100" type="text" name="username" placeholder="username" required>
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input m-b-25" data-validate = "Enter password">
-					<input class="input100" type="password" name="password" placeholder="password">
+					<input class="input100" type="password" name="password" placeholder="password" required>
+					<span class="focus-input100"></span>
+				</div>			
+				<div class="wrap-input100 validate-input m-b-25" data-validate = "Enter fullname">
+					<input class="input100" type="text" name="fullname" placeholder="fullname" required>
 					<span class="focus-input100"></span>
 				</div>
-
-				
-				<div class="wrap-input100 validate-input m-b-25" data-validate = "Enter password">
-					<input class="input100" type="text" name="fullname" placeholder="fullname">
+				<div class="wrap-input100 validate-input m-b-25" data-validate = "Enter phone">
+					<input class="input100" type="text" name="phone" placeholder="phone" required>
 					<span class="focus-input100"></span>
 				</div>
-				<div class="wrap-input100 validate-input m-b-25" data-validate = "Enter password">
+				<div class="wrap-input100">
 					<select name="role" class="select100">
 						<?php 
 							$sql_role = "select * from roles";
