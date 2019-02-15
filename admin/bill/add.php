@@ -8,17 +8,19 @@
             <?php
             if(isset($_POST['submit'])){
             $id_customer = $_POST['id_customer'];
+            $sql_search_phone = "SELECT * FROM users WHERE phone = $id_customer";
+            $rs_search_phone = $mysqli->query($sql_search_phone);
+            $row_search_phone = $rs_search_phone->fetch_assoc();
+            $id_cs = $row_search_phone['id_user'];
+
             $price = $_POST['price'];
-            $qAddBill = "INSERT INTO bill(id_user,price) VALUES ($id_customer,$price)";
-            echo $qAddBill;
-
-            # $pointCong = price / 1000;
-
-            # $qUpdateBill = "UPDATE users SET point = point + $pointCong where id_user = $id_customer";
-
-            $rsAddBill= $mysqli->query($qAddBill);
-            if($rsAddBill){
-                header('Location:/andy/admin/bill/?msgsuccess=Thêm hóa đơn thành công!');
+            $qAddBill = "INSERT INTO bill(id_user,price) VALUES ($id_cs,$price)";
+            $rsAddBill = $mysqli->query($qAddBill);
+            $pointCong = $price / 1000;
+            $qUpdateBill = "UPDATE users SET point = point + $pointCong where id_user = $id_cs";
+            $rsUpdateBill= $mysqli->query($qUpdateBill);
+            if($rsAddBill && $rsUpdateBill){
+                header('Location:/andy/admin/bill/?msgsuccess=Tích lũy điểm thành công!');
                 die();
             }else{
                 echo '<p>Có lỗi trong quá trình xử lý!</p>';
@@ -29,16 +31,7 @@
 	    			<form action="#" class="appointment-form" method="POST">
 	    				<div class="d-md-flex">
 		    				<div class="form-group">
-                <label for="id_customer">Customer Name</label>
-                  <select name="id_customer" class="form-control" required>
-                    <?php 
-                          $sql_user = "SELECT * FROM users WHERE id_role = 2";
-                          $rs_user = $mysqli->query($sql_user);
-                          while($row_user = $rs_user->fetch_assoc()){
-                       ?>
-                    <option value="<?php echo $row_user['id_user']?>"><?php echo $row_user['fullname']?></option>
-                  <?php } ?>
-                  </select>  
+                  <input type="text" name="id_customer" class="form-control" placeholder="NumberPhone">
 		    				</div>
 	    				</div>
 	    				<div class="d-me-flex">
